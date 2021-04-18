@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#41414C" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+    <title>logfy</title>
+
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/partials/page-header.css" />
+    <link rel="stylesheet" href="/styles/partials/cards.css" />
+    <link rel="stylesheet" href="/styles/partials/buttons.css" />
+    <link rel="stylesheet" href="/styles/partials/forms.css" />
+    <link rel="stylesheet" href="/styles/partials/modal.css" />
+    <link rel="stylesheet" href="/styles/partials/animations.css" />
+    <link rel="stylesheet" href="/styles/pages/job.css" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="module" src="/public/scripts/job-edit.js"></script>
+    
+  </head>
+  <body id="page-job-edit">
+    
+    <%- include('parts/page-header', { title: 'Edit task'}) %>
+
+    <div class="container flex animate-up delay-2">
+        <form id="form-job" 
+        method="post"
+        action="/job/<%= job.id %>">
+          <fieldset>
+            <legend>This task</legend>
+            <div class="separator light"></div>
+            <div class="input-wrapper">
+              <label for="name">Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name"
+                value="<%= job.name %> "
+              />
+            </div>
+            <div class="input-group">
+              <div class="input-wrapper">
+                <label for="daily-hours">Amount of hours <br/>
+                  I plan on working this task</label>
+                <input 
+                  type="number"
+                  step="0.1" 
+                  id="daily-hours" 
+                  name="daily-hours"
+                  value="<%= job["daily-hours"] %>"/>
+              </div>
+              <div class="input-wrapper">
+                <label for="total-hours">Amount of hours <br/>
+                  this task will take</label>
+                <input 
+                  type="number"
+                  id="total-hours" 
+                  name="total-hours"
+                  value="<%= job["total-hours"] %>" />
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </main>
+      <aside class="card">
+        <img src="/images/money-color.svg" alt="Money icon">
+        <p>
+          I should charge <strong>$ <%= job.budget.toFixed(2) %> </strong>
+        </p>
+        <div class="button-group">
+          <button 
+            class="button green" 
+            form="form-job" 
+            type="submit" 
+            title="Submit">Submit</button>
+          <a 
+            href="#" 
+            class="button gray open-modal"
+            >
+            <img 
+              src="/images/trash-24.svg" 
+              alt="Cancel" 
+              title="Cancel">
+          </a>
+        </div>
+      </aside>   
+    </div>
+    <!-- end container -->
+
+    <div class="modal-wrapper">
+      <div class="modal">
+        <img src="/images/trash-48.svg" alt="Delete task" title="Delete task" />
+        <h3>Delete task</h3>
+        <p>Would you like to delete this task? <br/>
+          Once it's gone, it's gone.    
+        </p>
+        <footer>
+          <a 
+            class="button gray" 
+            href="#">Cancel</a>
+          <button
+            class="button red"
+            type="submit"
+            form="delete-job">Delete task</button>
+        </footer>
+      </div>
+      <form 
+        method="post" 
+        action="/job/delete/<%= job.id %> " 
+        id="delete-job"></form>
+    </div>
+    <!-- end modal-wrapper -->
+  </body>
+</html>
+ 

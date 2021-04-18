@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#41414C" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+    <title>logfy</title>
+
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/partials/page-header.css" />
+    <link rel="stylesheet" href="/styles/partials/cards.css" />
+    <link rel="stylesheet" href="/styles/partials/buttons.css" />
+    <link rel="stylesheet" href="/styles/partials/modal.css" />
+    <link rel="stylesheet" href="/styles/partials/animations.css" />
+    <link rel="stylesheet" href="/styles/pages/index.css" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="scripts/index.js" defer type="module"></script>
+  </head>
+  <body id="page-index">
+    <header class="page-header">
+      <div class="container">
+        <section id="top" class="animate-up">
+          <h2 class="sr-only">Homepage</h2>
+          <img id="logo" src="/images/logo.svg" alt="Logo" />
+          <span id="notification">
+            <img src="/images/alert-octagon.svg" alt="Alerta" />
+            1 hour left
+          </span>
+          <a href="/profile" id="avatar-profile">
+            <p>Shelby <span>My profile</span></p>
+            <img
+              src="https://login.vivaldi.net/profile/avatar/GunslingerTheParrot/bVazmPznJxcrl2Gn.png"
+            />
+          </a>
+        </section>
+
+        <div class="separator"></div>
+
+        <section id="summary" class="animate-up delay-1">
+          <h2 class="sr-only">Summary</h2>
+
+          <div class="info">
+            <div class="total">
+              <strong>2</strong>
+              Projects
+            </div>
+            <div class="in-progress">
+              <strong>1</strong>
+              Open
+            </div>
+            <div class="finished">
+              <strong>1</strong>
+              Closed
+            </div>
+          </div>
+          <a class="button orange" href="/job">
+            <span>
+              <img src="/images/plus-24.svg" alt="Novo Job" />
+            </span>
+            Create new task
+          </a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <main class="animate-up delay-2">
+        <h1 class="sr-only">Tasks</h1>
+
+        <div class="cards">
+          <% jobs.forEach((job) => { %>
+
+            <div class="card <%= job.status %> " data-id="<%= job.id %> ">
+              <div class="id column"><%= job.id %> </div>
+              <div class="name column"><%= job.name %> </div>
+              <div class="deadline column">
+                <span>Due</span>
+                <p>
+                  <% if(job.status === 'progress') { %>
+                      <%= job.remainder %> days
+                 <% } else { %>
+                  Closed
+                 <% } %>   
+                </p>
+              </div>
+              <div class="amount column">
+                <span>In</span>
+                <p>$<%= job.budget.toFixed(2) %> </p>
+              </div>
+              <div class="status badge column"><%= job.status === 'done' ? 'Archived' : 'Open' %> </div>
+              <div class="actions column flex">
+                <p class="sr-only">Actions</p>
+                <a href="/job/<%= job.id %> " class="button white edit" title="Editar Job">
+                  <img src="/images/edit-24.svg" alt="Editar Job" />
+                </a>
+                <button class="delete button white" title="Excluir Job">
+                  <img src="/images/trash-24.svg" alt="Excluir Job" />
+                </button>
+              </div>
+            </div>
+
+          <% }) %>
+        </div>
+        <!-- end cards -->
+      </main>
+    </div>
+    <!-- end container -->
+
+    <div class="modal-wrapper">
+      <div class="modal">
+        <img src="/images/trash-48.svg" alt="Excluir Job" title="Excluir Job" />
+        <h3>Delete Task</h3>
+        <p>
+          Would you like to delete this task? <br />
+          Once it's gone, it's gone.
+        </p>
+
+        <p></p>
+        <footer>
+          <a class="button gray" href="#">Cancel</a>
+          <button class="button red" type="submit" form="delete-job">
+            Delete Task
+          </button>
+        </footer>
+      </div>
+      <form method="post" action="/job/delete" id="delete-job"></form>
+    </div>
+    <!-- end modal-wrapper -->
+  </body>
+</html>
