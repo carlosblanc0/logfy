@@ -6,9 +6,7 @@ Logfy
 
 ## Project
 
-Estimate how much you should charge for your next project -  built with EJS, Node.js, and Express 
-
-1. Manually add items one-by-one
+Calendly-alternative (bit of a stretch, I know) app I built using Express.js and EJS. The production build is currently being deployed using Heroku, whereas the landing page is a simple static vanilla JS page being served with Netlify.
 
 > Check it out: https://try-logfy.netlify.app
 
@@ -17,8 +15,7 @@ Head on over to [LICENSE](.github/LICENSE.md) for more details.
 
 ## Appendix and FAQ
 
-:::info
 **Find this document incomplete?** Leave a comment!
-:::
+
 
 ###### tags: `Finance` `Documentation`
