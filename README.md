@@ -1,5 +1,5 @@
 
-# Budgetfy
+# logfy
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
@@ -11,6 +11,8 @@
 
 Calendly-alternative (bit of a stretch, I know) app I built using Express.js and EJS. The production build is currently being deployed using Heroku, whereas the landing page is a simple static vanilla JS page being served with Netlify.
 
+![fenderfy](logfy.gif)
+
 ## Navigating the app
 ```bash
 Manually add/delete items one-by-one
@@ -18,13 +20,12 @@ Click "Save" or "Cancel"
 Entry gets added to the dashboard
 ```
 
-
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://github.com/carloswhite/logfy.git
+  git clone https://github.com/carlosblanc0/logfy.git
 ```
 
 Go to the project directory
